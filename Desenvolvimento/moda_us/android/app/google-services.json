@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "660170235213",
+    "project_id": "moda-us",
+    "storage_bucket": "moda-us.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:660170235213:android:59e8b448e21d1688e86b04",
+        "android_client_info": {
+          "package_name": "br.com.souza.moda_us"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "660170235213-8ss9af9tickhb74bcdqvdaa4onjn0d2j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMrM4vD95Ahm_nmZ7piMrXGJf2TY4GsSM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "660170235213-8ss9af9tickhb74bcdqvdaa4onjn0d2j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
