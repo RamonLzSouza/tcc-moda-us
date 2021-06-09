@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-class PageManager{
+class PageManager {
 
   PageManager(this._pageController);
-
 
   PageController _pageController;
 
@@ -14,5 +13,6 @@ class PageManager{
     page = value;
     _pageController.jumpToPage(value);
   }
-
+  
 }
+
