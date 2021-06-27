@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:moda_us/common/custom_drawer/custom_drawer.dart';
 import 'package:moda_us/models/page_manager.dart';
+import 'package:moda_us/screens/login/login_screen.dart';
+import 'package:moda_us/screens/products/products_screen.dart';
 import 'package:provider/provider.dart';
 
-import 'login/login_screen.dart';
-
-class BaseScreen extends StatefulWidget {
-
-  @override
-  _BaseScreenState createState() => _BaseScreenState();
-}
-
-class _BaseScreenState extends State<BaseScreen> {
+class BaseScreen extends StatelessWidget {
   final PageController pageController = PageController();
 
   @override
@@ -22,13 +16,13 @@ class _BaseScreenState extends State<BaseScreen> {
         controller: pageController,
         physics: const NeverScrollableScrollPhysics(),
         children: <Widget>[
-          LoginScreen(),
           Scaffold(
             drawer: CustomDrawer(),
             appBar: AppBar(
-              title: const Text('Home2'),
+              title: const Text('Home'),
             ),
           ),
+          ProductsScreen(),
           Scaffold(
             drawer: CustomDrawer(),
             appBar: AppBar(
