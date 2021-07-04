@@ -10,7 +10,7 @@ class ItemSize{
   num price;
   int stock;
 
-  bool get hasTock => stock > 0;
+  bool get hasStock => stock > 0;
 
   @override
   String toString(){
