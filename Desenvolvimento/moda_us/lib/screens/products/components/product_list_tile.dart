@@ -18,15 +18,19 @@ class ProductListTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(4)
         ),
         child: Container(
-          height: 100,
-          padding: const EdgeInsets.all(8),
+          height: 230,
+          padding: const EdgeInsets.all(2),
           child: Row(
             children: <Widget>[
-              AspectRatio(
+              Container(
+                height: 350,
+                width: 160,
+              child: AspectRatio(
                 aspectRatio: 1,
                 child: Image.network(product.images.first),
+                ),
               ),
-              const SizedBox(width: 16,),
+              const SizedBox(width: 15,),
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -35,24 +39,24 @@ class ProductListTile extends StatelessWidget {
                     Text(
                       product.name,
                       style: const TextStyle(
-                        fontSize: 16,
+                        fontSize: 18,
                         fontWeight: FontWeight.w800,
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 4),
+                      padding: const EdgeInsets.only(top: 2),
                       child: Text(
                         'A partir de',
                         style: TextStyle(
                           color: Colors.grey[400],
-                          fontSize: 12,
+                          fontSize: 14,
                         ),
                       ),
                     ),
                     Text(
-                      'R\$ 19.99',
+                      'R\$ 149,90',
                       style: TextStyle(
-                        fontSize: 15,
+                        fontSize: 20,
                         fontWeight: FontWeight.w800,
                         color: Theme.of(context).primaryColor
                       ),
