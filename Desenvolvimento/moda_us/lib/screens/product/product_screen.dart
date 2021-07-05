@@ -123,10 +123,10 @@ class ProductScreen extends StatelessWidget {
                               textColor: Colors.white,
                               child: Text(
                                 userManager.isLoggedIn
-                                  ? 'Adicionar ao Carrinho'
+                                  ? 'Adicionar ao Carrinho' 
                                   : 'Entre para Comprar',
                                   style: const TextStyle(fontSize: 18),
-                              )
+                              ),
                             ),
                           );
                         },
