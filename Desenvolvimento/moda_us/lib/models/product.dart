@@ -20,10 +20,22 @@ class Product extends ChangeNotifier{
   List<ItemSize> sizes;
 
   ItemSize _selectedSize;
-  ItemSize get selectSize => _selectedSize;
+  ItemSize get selectedSize => _selectedSize;
   set selectedSize(ItemSize value){
-    _selectedSize = _selectedSize;
+    _selectedSize = value;
     notifyListeners();
+  }
+
+  int get totalStock{
+    int stock = 0;
+    for(final size in sizes){
+      stock += size.stock;
+    }
+    return stock;
+  }
+
+  bool get hasStock{
+    return totalStock > 0;
   }
 
 }
