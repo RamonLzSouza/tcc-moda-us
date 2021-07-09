@@ -1,3 +1,4 @@
+import 'package:moda_us/models/item_size.dart';
 import 'package:moda_us/models/product.dart';
 
 class CartProduct{
@@ -15,4 +16,15 @@ class CartProduct{
 
 
   Product product;
+
+  ItemSize get itemSize{
+    if(product == null) return null;
+    return product.findSize(size);
+  }
+
+  num get unitPrice{
+    if(product == null) return 0;
+    return itemSize?.price ?? 0;
+  }
+
 }
