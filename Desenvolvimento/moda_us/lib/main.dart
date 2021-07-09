@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moda_us/models/cart_manager.dart';
 import 'package:moda_us/models/product.dart';
 import 'package:moda_us/models/product_manager.dart';
 import 'package:moda_us/models/user_manager.dart';
@@ -7,6 +8,8 @@ import 'package:moda_us/screens/login/login_screen.dart';
 import 'package:moda_us/screens/product/product_screen.dart';
 import 'package:moda_us/screens/signup/signup_screen.dart';
 import 'package:provider/provider.dart';
+
+
 
 void main() {
   runApp(MyApp());
@@ -23,6 +26,10 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => ProductManager(),
+          lazy: false,
+        ),
+        Provider(
+          create: (_) => CartManager(),
           lazy: false,
         )
       ],

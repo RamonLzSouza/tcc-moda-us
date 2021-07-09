@@ -2,6 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:moda_us/models/product.dart';
 
+import 'package:shimmer/shimmer.dart';
+
+
 class ProductManager extends ChangeNotifier {
   ProductManager() {
     _loadAllProducts();
@@ -46,4 +49,5 @@ class ProductManager extends ChangeNotifier {
 
     notifyListeners();
   }
+
 }

@@ -1,5 +1,6 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
+import 'package:moda_us/models/cart_manager.dart';
 import 'package:moda_us/models/product.dart';
 import 'package:moda_us/models/user_manager.dart';
 import 'package:moda_us/screens/product/components/size_widget.dart';
@@ -114,7 +115,7 @@ class ProductScreen extends StatelessWidget {
                             child: RaisedButton(
                               onPressed: product.selectedSize != null ? (){
                                 if(userManager.isLoggedIn){
-                                  // TODO: ADICIONAR AO CARRINHO
+                                  context.read<CartManager>().addToCart(product);
                                 } else{
                                   Navigator.of(context).pushNamed('/login');
                                 }

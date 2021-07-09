@@ -15,9 +15,20 @@ class SizeWidget extends StatelessWidget {
     final product = context.watch<Product>();
     final selected = size == product.selectedSize;
 
+/* height: 5.0,
+            width: 5.0,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                    'images/x.png'),
+                fit: BoxFit.fill,
+              ),
+              shape: BoxShape.circle,
+            ), */
+
     Color color;
     if(!size.hasStock) {
-      color = Colors.grey.withAlpha(50);
+      color = Colors.red.withAlpha(25);
     } else if(selected) {
       color = Theme.of(context).primaryColor;
 
@@ -42,7 +53,7 @@ class SizeWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Container(
-            color: !size.hasStock ? Colors.grey.withAlpha(50) : Colors.white,
+            color: !size.hasStock ? Colors.red.withAlpha(25) : Colors.white,
             padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
             child: Text(
               size.name,
@@ -53,7 +64,7 @@ class SizeWidget extends StatelessWidget {
                 ),
             ),
           ),
-
+          
               //PREÇO POR TAMANHO
                   //Container(
                   //  padding: const EdgeInsets.symmetric(horizontal: 16),
