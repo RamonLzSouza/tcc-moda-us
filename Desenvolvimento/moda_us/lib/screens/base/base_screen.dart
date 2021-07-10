@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moda_us/common/custom_drawer/custom_drawer.dart';
 import 'package:moda_us/models/page_manager.dart';
-import 'package:moda_us/screens/login/login_screen.dart';
 import 'package:moda_us/screens/products/products_screen.dart';
 import 'package:provider/provider.dart';
 

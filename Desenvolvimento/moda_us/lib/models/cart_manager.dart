@@ -4,7 +4,7 @@ import 'package:moda_us/models/product.dart';
 import 'package:moda_us/models/user.dart';
 import 'package:moda_us/models/user_manager.dart';
 
-class CartManager{
+class CartManager {
 
   List<CartProduct> items = [];
 
@@ -22,13 +22,18 @@ class CartManager{
   Future<void> _loadCartItems() async {
     final QuerySnapshot cartSnap = await user.cartReference.getDocuments();
 
-    cartSnap.documents.map((d) => CartProduct.fromDocument(d)).toList();
-
+    items = cartSnap.documents.map((d) => CartProduct.fromDocument(d)).toList();
   }
-
 
   void addToCart(Product product){
-    items.add(CartProduct.fromProduct(product));
+    try{
+      final e = items.firstWhere((p) => p.stackable(product));
+      e.quantity++;
+    } catch(e){
+      final cartProduct = CartProduct.fromProduct(product);
+      items.add(cartProduct);
+      user.cartReference.add(cartProduct.toCartItemMap());
+    }
   }
-    
+
 }

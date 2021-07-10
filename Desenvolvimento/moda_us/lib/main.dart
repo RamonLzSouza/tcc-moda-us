@@ -11,7 +11,6 @@ import 'package:moda_us/screens/signup/signup_screen.dart';
 import 'package:provider/provider.dart';
 
 
-
 void main() {
   runApp(MyApp());
 }
@@ -32,9 +31,9 @@ class MyApp extends StatelessWidget {
         ProxyProvider<UserManager, CartManager>(
           create: (_) => CartManager(),
           lazy: false,
-          update: (_, userManager, cartManager) => 
+          update: (_, userManager, cartManager) =>
             cartManager..updateUser(userManager),
-        )
+        ),
       ],
       child: MaterialApp(
         title: 'Moda Us',
