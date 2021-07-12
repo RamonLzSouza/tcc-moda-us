@@ -24,6 +24,7 @@ class ProductScreen extends StatelessWidget {
         ),
         backgroundColor: Colors.white,
         body: ListView(
+          
           children: <Widget>[
             Container(
               height: 500,
@@ -73,6 +74,7 @@ class ProductScreen extends StatelessWidget {
                     ),
                   ),
                   const Padding(
+                    
                       padding: EdgeInsets.only(top: 16, bottom: 8),
                       child: Text(
                         'Tamanhos',
@@ -106,32 +108,51 @@ class ProductScreen extends StatelessWidget {
                       fontSize: 16
                     ),
                   ),
-                    const SizedBox(height: 20,),
-                    if(product.hasStock)
+                    const SizedBox(height: 20,),                    
                       Consumer2<UserManager, Product>(
                         builder: (_, userManager, product, __){
-                          return SizedBox(
-                            height: 44,
-                            child: RaisedButton(
-                              onPressed: product.selectedSize != null ? (){
-                                if(userManager.isLoggedIn){
-                                  context.read<CartManager>().addToCart(product);
-                                  Navigator.of(context).pushNamed('/cart');
-                                } else{
-                                  Navigator.of(context).pushNamed('/login');
-                                }
-                              } : null,
-                              color: primaryColor,
-                              textColor: Colors.white,
-                              child: Text(
-                                userManager.isLoggedIn
-                                  ? 'Adicionar ao Carrinho' 
-                                  : 'Entre para Comprar',
-                                  style: const TextStyle(fontSize: 18),
+                          if(product.hasStock) {
+                            return SizedBox(
+                              height: 44,
+                              child: RaisedButton(
+                                onPressed: product.selectedSize != null ? (){
+                                  if(userManager.isLoggedIn){
+                                    context.read<CartManager>().addToCart(product);
+                                    Navigator.of(context).pushNamed('/cart');
+                                  } else{
+                                    Navigator.of(context).pushNamed('/login');
+                                  }
+                                } : null,
+                                color: primaryColor,
+                                textColor: Colors.white,
+                                child: Text(
+                                  userManager.isLoggedIn
+                                    ? 'Adicionar ao Carrinho' 
+                                    : 'Entre para Comprar',
+                                    style: const TextStyle(fontSize: 18),
+                                ),
                               ),
-                            ),
-                          );
-                        },
+                            );
+                          } else {
+                            return SizedBox(
+                              child: Container(
+                                color: Colors.red,
+                                  child: const SizedBox(
+                                      height: 44,
+                                      child: RaisedButton(                         
+                                        child: Text('Estoque indisponível :(',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize:18,
+                                            fontWeight: FontWeight.bold
+                                          ),
+                                      ),
+                                    ),
+                                  ),
+                              ),
+                            );
+                          }
+                        },                        
                       )
                 ],
               ),
