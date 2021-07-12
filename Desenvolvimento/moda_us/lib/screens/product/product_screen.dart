@@ -140,6 +140,7 @@ class ProductScreen extends StatelessWidget {
                                   child: const SizedBox(
                                       height: 44,
                                       child: RaisedButton(                         
+                                        onPressed: null,
                                         child: Text('Estoque indisponível :(',
                                           style: TextStyle(
                                             color: Colors.white,

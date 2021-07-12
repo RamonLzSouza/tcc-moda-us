@@ -42,6 +42,9 @@ class CartProduct extends ChangeNotifier{
     return itemSize?.price ?? 0;
   }
 
+
+  num get totalPrice => unitPrice * quantity;
+
   Map<String, dynamic> toCartItemMap(){
     return{
       'pid': productId,
