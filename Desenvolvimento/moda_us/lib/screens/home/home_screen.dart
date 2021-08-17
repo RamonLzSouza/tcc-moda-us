@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
                 elevation: 0,
                 backgroundColor: Colors.transparent,
                 flexibleSpace: const FlexibleSpaceBar(
-                  title: Text('Moda\'Us'),
+                  title: Text('Moda \'Us'),
                   centerTitle: true,
                 ),
                 actions: <Widget>[
