@@ -16,6 +16,23 @@ class SectionList extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           SectionHeader(section),
+          SizedBox(
+            height: 250,
+            child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (_, index){
+                    return AspectRatio(
+                      aspectRatio: 0.55,
+                      child: Image.network(
+                        section.items[index].image,
+                        fit: BoxFit.cover,
+                        ),
+                      );
+                  }, 
+                  separatorBuilder: (_, __) => const SizedBox(width: 10,), 
+                  itemCount: section.items.length,
+                  ),
+          )
         ],
       )
     );
