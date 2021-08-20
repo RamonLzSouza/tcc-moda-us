@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:moda_us/common/custom_drawer/custom_drawer.dart';
 import 'package:moda_us/models/home_manager.dart';
 import 'package:moda_us/screens/home/components/section_list.dart';
+import 'package:moda_us/screens/home/components/section_staggered.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -50,7 +51,7 @@ class HomeScreen extends StatelessWidget {
                         case 'List':
                           return SectionList(section);
                         case 'Staggered':
-                          return Container();
+                          return SectionStaggered(section);
                         default:
                           return Container();
                       }
