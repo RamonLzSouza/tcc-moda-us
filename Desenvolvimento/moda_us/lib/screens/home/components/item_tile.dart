@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class ItemTile extends StatelessWidget {
+  // ignore: use_key_in_widget_constructors
   const ItemTile(this.item);
 
   final SectionItem item;
