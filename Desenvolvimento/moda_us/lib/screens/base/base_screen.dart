@@ -38,7 +38,7 @@ class BaseScreen extends StatelessWidget {
                   title: const Text('Home4'),
                 ),
               ),
-              if(userManager.adminEnable)
+              if(userManager.adminEnabled)
                 ...[
                   AdminUsersScreen(),
                   Scaffold(

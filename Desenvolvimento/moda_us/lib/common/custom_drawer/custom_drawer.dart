@@ -49,7 +49,7 @@ class CustomDrawer extends StatelessWidget {
             ),
             Consumer<UserManager>(
               builder: (_, userManager, __){
-                if(userManager.adminEnable){
+                if(userManager.adminEnabled){
                   return Column(
                     // ignore: prefer_const_literals_to_create_immutables
                     children: <Widget>[
