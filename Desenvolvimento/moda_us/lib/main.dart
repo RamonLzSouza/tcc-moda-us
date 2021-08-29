@@ -7,6 +7,7 @@ import 'package:moda_us/models/product_manager.dart';
 import 'package:moda_us/models/user_manager.dart';
 import 'package:moda_us/screens/base/base_screen.dart';
 import 'package:moda_us/screens/cart/cart_screen.dart';
+import 'package:moda_us/screens/edit_product/edit_product_screen.dart';
 import 'package:moda_us/screens/login/login_screen.dart';
 import 'package:moda_us/screens/product/product_screen.dart';
 import 'package:moda_us/screens/signup/signup_screen.dart';
@@ -78,6 +79,10 @@ class MyApp extends StatelessWidget {
             case '/cart':
               return MaterialPageRoute(
                   builder: (_) => CartScreen()
+              );
+              case '/edit_product':
+              return MaterialPageRoute(
+                  builder: (_) => EditProductScreen()
               );  
             case '/base':
             default:
