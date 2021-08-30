@@ -14,8 +14,14 @@ class ImagesForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FormField<List<dynamic>>(
-      initialValue: product.images,
+      initialValue: List.from(product.images),
       builder: (state) {
+        void onImageSelected(File file) {
+          state.value.add(file);
+          state.didChange(state.value);
+          Navigator.of(context).pop();
+        }
+
         return Container(
           height: 500,
           width: 500,
@@ -26,47 +32,53 @@ class ImagesForm extends StatelessWidget {
                 return Stack(
                   fit: StackFit.expand,
                   children: <Widget>[
-                    if(image is String)
-                      Image.network(image, fit: BoxFit.cover,)
-                    else
-                      Image.file(image as File, fit: BoxFit.cover,),
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: IconButton(
-                        icon: const Icon(Icons.remove),
-                        color: Colors.red,
-                        onPressed: (){
-                          state.value.remove(image);
-                          state.didChange(state.value);
-        
-                        },
+                    if (image is String)
+                      Image.network(
+                        image,
+                        fit: BoxFit.cover,
                       )
-                    )
+                    else
+                      Image.file(
+                        image as File,
+                        fit: BoxFit.cover,
+                      ),
+                    Align(
+                        alignment: Alignment.topRight,
+                        child: IconButton(
+                          icon: const Icon(Icons.remove),
+                          color: Colors.red,
+                          onPressed: () {
+                            state.value.remove(image);
+                            state.didChange(state.value);
+                          },
+                        ))
                   ],
                 );
-              }).toList()..add(
-                Material(
-                  color: Colors.grey[100],
-                  child: IconButton(
-                    icon: const Icon(Icons.add_a_photo),
-                    color: Theme.of(context).primaryColor,
-                    iconSize: 50,
-                    onPressed: (){
-                      if(Platform.isAndroid) {
-                        showDialog(
-                        context: context, 
-                        builder: (_) => ImageSourceSheet()
-                        );
-                      } else {
-                        showCupertinoModalPopup(
-                          context: context, 
-                          builder: (_) => ImageSourceSheet()
-                        );
-                      }
-                    },
-                  )
-                )
-              ),
+              }).toList()
+                ..add(Material(
+                    color: Colors.grey[100],
+                    child: IconButton(
+                      icon: const Icon(Icons.add_a_photo),
+                      color: Theme.of(context).primaryColor,
+                      iconSize: 50,
+                      onPressed: () {
+                        if (Platform.isAndroid) {
+                          showDialog(
+                            context: context,
+                            builder: (_) => ImageSourceSheet(
+                              onImageSelected: onImageSelected,
+                            ),
+                          );
+                        } else {
+                          showCupertinoModalPopup(
+                            context: context,
+                            builder: (_) => ImageSourceSheet(
+                              onImageSelected: onImageSelected,
+                            ),
+                          );
+                        }
+                      },
+                    ))),
               dotSize: 5,
               dotSpacing: 15,
               dotBgColor: Colors.transparent,
