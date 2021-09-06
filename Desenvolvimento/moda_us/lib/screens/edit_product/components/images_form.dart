@@ -7,6 +7,7 @@ import 'package:moda_us/models/product.dart';
 import 'package:moda_us/screens/edit_product/components/image_source_sheet.dart';
 
 class ImagesForm extends StatelessWidget {
+
   const ImagesForm(this.product);
 
   final Product product;
@@ -15,77 +16,96 @@ class ImagesForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return FormField<List<dynamic>>(
       initialValue: List.from(product.images),
-      builder: (state) {
-        void onImageSelected(File file) {
+      validator: (images){
+        if(images.isEmpty) {
+          return 'Insira ao menos uma imagem';
+        }
+        return null;
+      },
+      builder: (state){
+        void onImageSelected(File file){
           state.value.add(file);
           state.didChange(state.value);
           Navigator.of(context).pop();
         }
 
-        return Container(
-          height: 500,
-          width: 500,
-          child: AspectRatio(
-            aspectRatio: 1,
-            child: Carousel(
-              images: state.value.map<Widget>((image) {
-                return Stack(
-                  fit: StackFit.expand,
-                  children: <Widget>[
-                    if (image is String)
-                      Image.network(
-                        image,
-                        fit: BoxFit.cover,
-                      )
-                    else
-                      Image.file(
-                        image as File,
-                        fit: BoxFit.cover,
+        return Column(
+          children: <Widget>[
+            Container(
+              height: 500,
+              width: 500,
+              child: AspectRatio(
+                aspectRatio: 1,
+                child: Carousel(
+                  images: state.value.map<Widget>((image){
+                    return Stack(
+                      fit: StackFit.expand,
+                      children: <Widget>[
+                        if(image is String)
+                          Image.network(image, fit: BoxFit.cover,)
+                        else
+                          Image.file(image as File, fit: BoxFit.cover,),
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: IconButton(
+                            icon: const Icon(Icons.remove),
+                            color: Colors.red,
+                            onPressed: (){
+                              state.value.remove(image);
+                              state.didChange(state.value);
+                            },
+                          ),
+                        )
+                      ],
+                    );
+                  }).toList()..add(
+                    Material(
+                      color: Colors.grey[100],
+                      child: IconButton(
+                        icon: const Icon(Icons.add_a_photo),
+                        color: Theme.of(context).primaryColor,
+                        iconSize: 50,
+                        onPressed: (){
+                          if(Platform.isAndroid) {
+                            showModalBottomSheet(
+                                context: context,
+                                builder: (_) => ImageSourceSheet(
+                                  onImageSelected: onImageSelected,
+                                )
+                            );
+                          } else {
+                            showCupertinoModalPopup(
+                                context: context,
+                                builder: (_) => ImageSourceSheet(
+                                  onImageSelected: onImageSelected,
+                                )
+                            );
+                          }
+                        },
                       ),
-                    Align(
-                        alignment: Alignment.topRight,
-                        child: IconButton(
-                          icon: const Icon(Icons.remove),
-                          color: Colors.red,
-                          onPressed: () {
-                            state.value.remove(image);
-                            state.didChange(state.value);
-                          },
-                        ))
-                  ],
-                );
-              }).toList()
-                ..add(Material(
-                    color: Colors.grey[100],
-                    child: IconButton(
-                      icon: const Icon(Icons.add_a_photo),
-                      color: Theme.of(context).primaryColor,
-                      iconSize: 50,
-                      onPressed: () {
-                        if (Platform.isAndroid) {
-                          showDialog(
-                            context: context,
-                            builder: (_) => ImageSourceSheet(
-                              onImageSelected: onImageSelected,
-                            ),
-                          );
-                        } else {
-                          showCupertinoModalPopup(
-                            context: context,
-                            builder: (_) => ImageSourceSheet(
-                              onImageSelected: onImageSelected,
-                            ),
-                          );
-                        }
-                      },
-                    ))),
-              dotSize: 5,
-              dotSpacing: 15,
-              dotBgColor: Colors.transparent,
-              dotColor: Theme.of(context).primaryColor,
-              autoplay: false,
+                    )
+                  ),
+                  dotSize: 4,
+                  dotSpacing: 15,
+                  dotBgColor: Colors.transparent,
+                  dotColor: Theme.of(context).primaryColor,
+                  autoplay: false,
+                ),
+              ),
             ),
-          ),
+            if(state.hasError)
+              Container(
+                margin: const EdgeInsets.only(top: 16, left: 16),
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  state.errorText,
+                  style: const TextStyle(
+                    color: Colors.red,
+                    fontSize: 12,
+                  ),
+                ),
+              )
+          ],
         );
       },
     );

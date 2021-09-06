@@ -52,8 +52,8 @@ class MyApp extends StatelessWidget {
         title: 'Moda Us',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primaryColor: const Color.fromARGB(255, 0, 0, 0),
-          scaffoldBackgroundColor: const Color.fromARGB(255, 0, 0, 0),
+          primaryColor: const Color.fromARGB(255, 12, 12, 12),
+          scaffoldBackgroundColor: const Color.fromARGB(255, 12, 12, 12),
           appBarTheme: const AppBarTheme(
             elevation: 0
           ),
