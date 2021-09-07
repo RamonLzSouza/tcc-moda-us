@@ -4,11 +4,9 @@ class CustomIconButton extends StatelessWidget {
 
   const CustomIconButton({this.iconData, this.color, this.onTap});
 
-
   final IconData iconData;
   final Color color;
   final VoidCallback onTap;
-
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +20,7 @@ class CustomIconButton extends StatelessWidget {
             padding: const EdgeInsets.all(5),
             child: Icon(
               iconData,
-              color: color,
-              
+              color: onTap != null ? color : Colors.grey[400],
             ),
           ),
         ),

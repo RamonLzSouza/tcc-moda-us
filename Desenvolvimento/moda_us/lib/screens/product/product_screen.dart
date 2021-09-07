@@ -86,7 +86,7 @@ class ProductScreen extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'R\$ 199,90',
+                    'R\$ ${product.basePrice.toStringAsFixed(2)}',
                     style: TextStyle(
                       fontSize: 22.0,
                       fontWeight: FontWeight.bold,
