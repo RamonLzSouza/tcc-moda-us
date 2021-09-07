@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -25,11 +27,17 @@ class Product extends ChangeNotifier{
 
   }
 
+  final Firestore firestore = Firestore.instance;
+
+  DocumentReference get firestoreRef => firestore.document('products/$id');
+
   String id;
   String name;
   String description;
   List<String> images;
   List<ItemSize> sizes;
+
+  List<dynamic> newImages;
 
   ItemSize _selectedSize;
   ItemSize get selectedSize => _selectedSize;
@@ -69,6 +77,25 @@ class Product extends ChangeNotifier{
     }
   }
 
+  List<Map<String, dynamic>> exportSizeList(){
+    return sizes.map((size) => size.toMap()).toList();
+  }
+
+  Future<void> save() async {
+    final Map<String, dynamic> data = {
+      'name': name,
+      'description': description,
+      'sizes': exportSizeList(),
+    };
+
+    if(id == null){
+      final doc = await firestore.collection('products').add(data);
+      id = doc.documentID;
+    } else{
+      await firestoreRef.updateData(data);
+    }
+  }
+
   Product clone(){
     return Product(
       id: id,
@@ -79,7 +106,10 @@ class Product extends ChangeNotifier{
     );
   }
 
-
+  @override
+  String toString(){
+    return 'Product{id: $id, name: $name, description: $description, images: $images, sizes: $sizes, newImages: $newImages}';
+  }
 
 
 }
