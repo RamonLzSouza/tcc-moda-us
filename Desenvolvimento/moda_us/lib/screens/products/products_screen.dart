@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moda_us/common/custom_drawer/custom_drawer.dart';
 import 'package:moda_us/models/product_manager.dart';
+import 'package:moda_us/models/user_manager.dart';
 import 'package:moda_us/screens/products/components/product_list_tile.dart';
 import 'package:provider/provider.dart';
 
@@ -65,11 +66,28 @@ class ProductsScreen extends StatelessWidget {
                   icon: const Icon(Icons.close),
                   onPressed: () async {
                       productManager.search = '';
-                    }
+                    },
                 );
               }
             },
-          )
+          ),
+           Consumer<UserManager>(
+              builder: (_, userManager, __){
+                if(userManager.adminEnabled){
+                  return IconButton(
+                    icon: const Icon(Icons.add),
+                    onPressed: (){
+                      Navigator.of(context).pushNamed(
+                        '/edit_product',                       
+                        );
+
+                    },
+                  );
+                } else{
+                  return Container();
+                }
+              }
+            ,)
         ],
       ),
       body: Consumer<ProductManager>(

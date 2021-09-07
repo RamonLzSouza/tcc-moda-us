@@ -4,6 +4,18 @@ import 'package:flutter/cupertino.dart';
 import 'item_size.dart';
 
 class Product extends ChangeNotifier{
+
+  Product({
+    this.id, 
+    this.name,
+    this.description,
+    this.images,
+    this.sizes,
+    }){
+    images = images ?? [];
+    sizes = [];
+  }
+
   Product.fromDocument(DocumentSnapshot document) {
     id = document.documentID;
     name = document['name'] as String;
@@ -55,6 +67,16 @@ class Product extends ChangeNotifier{
     } catch (e){
       return null;
     }
+  }
+
+  Product clone(){
+    return Product(
+      id: id,
+      name: name,
+      description: description,
+      images: List.from(images),
+      sizes: sizes.map((size) => size.clone()).toList(),
+    );
   }
 
 
