@@ -44,14 +44,13 @@ class EditProductScreen extends StatelessWidget {
                         hintText: 'Título',
                         border: InputBorder.none,
                       ),
-                      style: const TextStyle(
+                      style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w600
                       ),
                       validator: (name){
-                        if(name.length < 6) {
+                        if(name.length < 6)
                           return 'Título muito curto';
-                        }
                         return null;
                       },
                       onSaved: (name) => product.name = name,
@@ -74,7 +73,7 @@ class EditProductScreen extends StatelessWidget {
                         color: primaryColor,
                       ),
                     ),
-                    const Padding(
+                    Padding(
                       padding: const EdgeInsets.only(top: 16),
                       child: Text(
                         'Descrição',
@@ -93,9 +92,8 @@ class EditProductScreen extends StatelessWidget {
                       ),
                       maxLines: null,
                       validator: (desc){
-                        if(desc.length < 10) {
+                        if(desc.length < 10)
                           return 'Descrição muito curta';
-                        }
                         return null;
                       },
                       onSaved: (desc) => product.description = desc,
