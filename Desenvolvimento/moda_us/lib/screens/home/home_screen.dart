@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:moda_us/common/custom_drawer/custom_drawer.dart';
 import 'package:moda_us/models/home_manager.dart';
 import 'package:moda_us/models/user_manager.dart';
+import 'package:moda_us/screens/home/components/add_section_widget.dart';
 import 'package:moda_us/screens/home/components/section_list.dart';
 import 'package:moda_us/screens/home/components/section_staggered.dart';
 import 'package:provider/provider.dart';
@@ -14,9 +15,9 @@ class HomeScreen extends StatelessWidget {
       body: Stack(
         children: <Widget>[
           Container(
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [
+                colors: const [
                   Color.fromARGB(255, 12, 12, 12),
                   Color.fromARGB(255, 12, 12, 12)
                 ],
@@ -38,7 +39,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 actions: <Widget>[
                   IconButton(
-                    icon: const Icon(Icons.shopping_cart),
+                    icon: Icon(Icons.shopping_cart),
                     color: Colors.white,
                     onPressed: () => Navigator.of(context).pushNamed('/cart'),
                   ),
@@ -65,13 +66,11 @@ class HomeScreen extends StatelessWidget {
                           );
                         } else {
                           return IconButton(
-                            icon: const Icon(Icons.edit),
+                            icon: Icon(Icons.edit),
                             onPressed: homeManager.enterEditing,
                           );
                         }
-                      } else {
-                        return Container();
-                      }
+                      } else return Container();
                     },
                   ),
                 ],
@@ -90,6 +89,10 @@ class HomeScreen extends StatelessWidget {
                       }
                     }
                   ).toList();
+
+                  if(homeManager.editing) {
+                    children.add(AddSectionWidget(homeManager));
+                  }
 
                   return SliverList(
                     delegate: SliverChildListDelegate(children),
