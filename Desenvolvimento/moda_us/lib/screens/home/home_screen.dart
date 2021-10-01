@@ -7,6 +7,7 @@ import 'package:moda_us/screens/home/components/section_list.dart';
 import 'package:moda_us/screens/home/components/section_staggered.dart';
 import 'package:provider/provider.dart';
 
+// ignore: use_key_in_widget_constructors
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -15,9 +16,9 @@ class HomeScreen extends StatelessWidget {
       body: Stack(
         children: <Widget>[
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
-                colors: const [
+                colors: [
                   Color.fromARGB(255, 12, 12, 12),
                   Color.fromARGB(255, 12, 12, 12)
                 ],
@@ -34,12 +35,13 @@ class HomeScreen extends StatelessWidget {
                 elevation: 0,
                 backgroundColor: Colors.transparent,
                 flexibleSpace: const FlexibleSpaceBar(
+                  // ignore: avoid_escaping_inner_quotes
                   title: Text('Moda \'Us'),
                   centerTitle: true,
                 ),
                 actions: <Widget>[
                   IconButton(
-                    icon: Icon(Icons.shopping_cart),
+                    icon: const Icon(Icons.shopping_cart),
                     color: Colors.white,
                     onPressed: () => Navigator.of(context).pushNamed('/cart'),
                   ),
@@ -66,11 +68,13 @@ class HomeScreen extends StatelessWidget {
                           );
                         } else {
                           return IconButton(
-                            icon: Icon(Icons.edit),
+                            icon: const Icon(Icons.edit),
                             onPressed: homeManager.enterEditing,
                           );
                         }
-                      } else return Container();
+                      } else {
+                        return Container();
+                      }
                     },
                   ),
                 ],
